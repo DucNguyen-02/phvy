@@ -1,12 +1,11 @@
-import { Field, Form, Formik, useFormik } from 'formik'
-import React from 'react'
-import AddNew from '../Popup/AddNew'
 import Button from '@/app/Shared/Button'
-import axios from 'axios'
+import AppAPI from '@/app/api'
+import { Field, Form, Formik } from 'formik'
+import AddNew from '../Popup/AddNew'
 
 const AddNewPolicy = ({ isOpen, setIsOpen, type, fetchData }) => {
   const handleSubmit = async (values, { resetForm }) => {
-    await axios.post('http://127.0.0.1:3000/csbh', values)
+    await AppAPI.createPolicy(values)
     setIsOpen(false)
     fetchData()
     resetForm()

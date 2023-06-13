@@ -1,6 +1,5 @@
 import MainBoard from '@/app/Components/MainBoard'
 import MainLayout from '@/app/Layout/MainLayout'
-import React from 'react'
 
 const Home = () => {
   return (
