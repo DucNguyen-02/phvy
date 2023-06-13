@@ -1,10 +1,7 @@
-import React from 'react'
-import Home from '../Home'
-import Policy from '../Policy'
-import Service from '../Service'
 import { Tabs } from 'antd'
 import styled from 'styled-components'
-import RepairType from '../RepairType'
+import Home from '../Home'
+import Policy from '../Policy'
 
 const TabStyled = styled(Tabs)`
   .ant-tabs-nav::before {
@@ -30,16 +27,6 @@ const MainBoard = () => {
             key: 'Policy',
             label: `Cập nhật Chính sách bảo hành`,
             children: <Policy />,
-          },
-          {
-            key: 'Service',
-            label: `Cập nhật dịch vụ sửa chữa`,
-            children: <Service />,
-          },
-          {
-            key: 'Repair',
-            label: `Cập nhật loại sửa chữa`,
-            children: <RepairType />,
           },
         ]}
       />
