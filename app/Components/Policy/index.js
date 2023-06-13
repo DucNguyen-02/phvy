@@ -1,8 +1,9 @@
 import { AppTable } from '@/app/Shared/AppTable'
 import Button from '@/app/Shared/Button'
+import AppAPI from '@/app/api'
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import AddNewPolicy from './AddNewPolicy'
-import axios from 'axios'
 
 const initUpdate = {
   maCSBH: '',
@@ -19,12 +20,12 @@ const Policy = () => {
   const [dataUpdate, setDataUpdate] = useState(initUpdate)
 
   const fetchData = async () => {
-    const data = await axios.get('http://127.0.0.1:3000/csbh')
+    const data = await AppAPI.getPolicy()
     setData(data.data)
   }
 
   const fetchTypeProduct = async () => {
-    const data = await axios.get('http://127.0.0.1:3000/loaisp')
+    const data = await AppAPI.getTypeProduct()
     setType(data.data)
   }
 
@@ -34,7 +35,7 @@ const Policy = () => {
   }, [])
 
   const handleUpdate = async () => {
-    await axios.put('http://127.0.0.1:3000/csbh', dataUpdate)
+    await AppAPI.updatePolicy(dataUpdate)
     fetchData()
     setDataUpdate(initUpdate)
   }
