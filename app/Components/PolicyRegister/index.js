@@ -49,7 +49,14 @@ const PolicyRegister = () => {
       enableReinitialize
       validationSchema={Yup.object().shape({
         maLoaiSP: Yup.string().required('maLoaiSP Bắt buộc'),
-        soDT: Yup.string().required('SDT Bắt buộc'),
+        soDT: Yup.string()
+          .matches(
+            /^0(([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+            'Số điện thoại không hợp lệ'
+          )
+          .min(10, 'Phải đủ 10 số')
+          .required('Số điện thoại bắt buộc')
+          .trim(),
         ngayDen: Yup.string().required('Ngày đến Bắt buộc'),
         gioHen: Yup.string().required('Giờ hẹn Bắt buộc'),
         diaChi: Yup.string().required('Địa chỉ Bắt buộc'),
@@ -147,12 +154,6 @@ const PolicyRegister = () => {
                       className="px-4 py-1 text-[20px]"
                       type="file"
                       name="anhPBH"
-                      onChange={(e) => {
-                        setFieldValue(
-                          'anhPBH',
-                          URL.createObjectURL(e.target.files[0])
-                        )
-                      }}
                     />
                     <img src={values.anhPBH} alt="" />
                   </div>
